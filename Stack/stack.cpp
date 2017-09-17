@@ -13,6 +13,6 @@ int main() {
 
 	s1->pop();
 	assert(s1->isEmpty());
-
+	delete s1;
 	return 0;
 }

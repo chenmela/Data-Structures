@@ -15,16 +15,22 @@ class Stack {
 		};
 
 		~Stack() {
-			delete this->top;
+			StackNode<T>* temp;
+			for (temp = this->top; this->top != NULL; temp = this->top) {
+				this->top = this->top->next;
+				delete temp;
+			}
 		};
 
-		T pop() {
-			
+		T pop() {			
 			if (this->isEmpty()) {
 				throw EmptyStackException();
 			}
-			T item = this->top->data;
+			StackNode<T> * temp;
+			temp = this->top;
+			T item = temp->data;
 			this->top = this->top->next;
+			delete temp;
 			return item;
 		};
 
@@ -45,6 +51,7 @@ class Stack {
 		bool isEmpty() {
 			return (this->top == NULL);
 		}
+	private:
 		StackNode<T> * top;
 };
 #endif
